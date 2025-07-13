@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { FaSearch, FaChevronDown, FaChevronUp, FaMobileAlt, FaWifi, FaTv, FaBolt, FaCreditCard, FaShieldAlt, FaHeadset, FaArrowRight } from "react-icons/fa";
+import { FaSearch, FaChevronDown, FaMobileAlt, FaWifi, FaTv, FaBolt, FaCreditCard, FaHeadset, FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,7 +24,7 @@ const faqCategories = [
       },
       {
         question: "Do you charge any fees?",
-        answer: "PayClick charges minimal processing fees that are clearly displayed before each transaction. There are no hidden fees, and you'll always see the exact amount you'll be charged before confirming your payment."
+        answer: "PayClick charges minimal processing fees that are clearly displayed before each transaction. There are no hidden fees, and you&apos;ll always see the exact amount you&apos;ll be charged before confirming your payment."
       }
     ]
   },
@@ -47,7 +47,7 @@ const faqCategories = [
       },
       {
         question: "Can I recharge airtime for someone else?",
-        answer: "Yes, you can recharge airtime for any Nigerian phone number. Simply enter the recipient's phone number during the recharge process."
+        answer: "Yes, you can recharge airtime for any Nigerian phone number. Simply enter the recipient&apos;s phone number during the recharge process."
       }
     ]
   },
@@ -85,7 +85,7 @@ const faqCategories = [
       },
       {
         question: "How do I find my smart card number?",
-        answer: "Your smart card number is usually displayed on your decoder or can be found in your account settings. It's typically a 10-12 digit number."
+        answer: "Your smart card number is usually displayed on your decoder or can be found in your account settings. It&apos;s typically a 10-12 digit number."
       },
       {
         question: "Can I pay for cable TV subscriptions in installments?",
@@ -108,7 +108,7 @@ const faqCategories = [
       },
       {
         question: "How do I find my meter number?",
-        answer: "Your meter number is displayed on your electricity meter. It's usually a 10-12 digit number that uniquely identifies your meter."
+        answer: "Your meter number is displayed on your electricity meter. It&apos;s usually a 10-12 digit number that uniquely identifies your meter."
       },
       {
         question: "Can I pay electricity bills for any amount?",
@@ -309,8 +309,8 @@ export default function FAQPage() {
             <FaHeadset className="text-3xl" />
           </div>
           <h2 className="text-3xl font-bold mb-6">Still Need Help?</h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Can't find what you're looking for? Our support team is here to help you 24/7.
+          <p className="text-lg text-gray-600 mb-8">
+            Can&apos;t find what you&apos;re looking for? Our support team is here to help you 24/7.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 

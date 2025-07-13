@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { FaUsers, FaGlobe, FaHandshake, FaCheckCircle, FaArrowRight, FaShieldAlt, FaRocket, FaBullseye } from "react-icons/fa";
+import { FaHandshake, FaArrowRight, FaShieldAlt, FaRocket, FaBullseye } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -82,7 +82,7 @@ export default function AboutPage() {
             About <span className="text-[#19C37D]">PayClick</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            We're revolutionizing digital payments in Nigeria, making it easier for everyone to manage their bills and services.
+            We&apos;re revolutionizing digital payments in Nigeria, making it easier for everyone to manage their bills and services.
           </p>
           <div className="flex justify-center">
             <Link href="/dashboard" className="bg-[#19C37D] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:bg-[#16a06a] transition flex items-center gap-2">

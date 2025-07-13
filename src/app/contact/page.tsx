@@ -1,26 +1,11 @@
 "use client";
-import React, { useState } from "react";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaHeadset, FaArrowRight, FaPaperPlane, FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaClock } from "react-icons/fa";
+import React from "react";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaArrowRight, FaPaperPlane, FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaClock } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setSubmitted(true);
-      setLoading(false);
-    }, 1200);
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#e0f2fe] via-white to-[#e0f2fe]">
@@ -53,7 +38,7 @@ export default function ContactPage() {
             Get in <span className="text-[#19C37D]">Touch</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            Have questions or need support? We're here to help you 24/7. Reach out to us through any of the channels below.
+            Have questions or need support? We&apos;re here to help you 24/7. Reach out to us through any of the channels below.
           </p>
           <div className="flex justify-center">
             <Link href="/dashboard" className="bg-[#19C37D] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:bg-[#16a06a] transition flex items-center gap-2">

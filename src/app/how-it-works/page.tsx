@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { FaMobileAlt, FaWifi, FaTv, FaBolt, FaUser, FaCreditCard, FaCheckCircle, FaArrowRight, FaShieldAlt, FaClock, FaHeadset } from "react-icons/fa";
+import { FaMobileAlt, FaUser, FaCreditCard, FaClock, FaShieldAlt, FaCheckCircle, FaHeadset, FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -62,56 +62,56 @@ const steps = [
   }
 ];
 
-const services = [
-  {
-    title: "Airtime Recharge",
-    icon: <FaMobileAlt className="text-4xl" />,
-    description: "Top up your mobile airtime instantly",
-    process: [
-      "Select network provider",
-      "Enter phone number",
-      "Specify amount",
-      "Make payment",
-      "Receive instant credit"
-    ]
-  },
-  {
-    title: "Data Bundles",
-    icon: <FaWifi className="text-4xl" />,
-    description: "Purchase data bundles for all networks",
-    process: [
-      "Choose network provider",
-      "Select data plan",
-      "Enter phone number",
-      "Complete payment",
-      "Data activated instantly"
-    ]
-  },
-  {
-    title: "Cable TV",
-    icon: <FaTv className="text-4xl" />,
-    description: "Pay for cable TV subscriptions",
-    process: [
-      "Select cable provider",
-      "Enter smart card number",
-      "Choose subscription plan",
-      "Make payment",
-      "Service activated immediately"
-    ]
-  },
-  {
-    title: "Electricity Bills",
-    icon: <FaBolt className="text-4xl" />,
-    description: "Pay electricity bills online",
-    process: [
-      "Choose electricity provider",
-      "Enter meter number",
-      "Specify amount",
-      "Complete payment",
-      "Receive payment confirmation"
-    ]
-  }
-];
+// const services = [
+//   {
+//     title: "Airtime Recharge",
+//     icon: <FaMobileAlt className="text-4xl" />,
+//     description: "Top up your mobile airtime instantly",
+//     process: [
+//       "Select network provider",
+//       "Enter phone number",
+//       "Specify amount",
+//       "Make payment",
+//       "Receive instant credit"
+//     ]
+//   },
+//   {
+//     title: "Data Bundles",
+//     icon: <FaWifi className="text-4xl" />,
+//     description: "Purchase data bundles for all networks",
+//     process: [
+//       "Choose network provider",
+//       "Select data plan",
+//       "Enter phone number",
+//       "Complete payment",
+//       "Data activated instantly"
+//     ]
+//   },
+//   {
+//     title: "Cable TV",
+//     icon: <FaTv className="text-4xl" />,
+//     description: "Pay for cable TV subscriptions",
+//     process: [
+//       "Select cable provider",
+//       "Enter smart card number",
+//       "Choose subscription plan",
+//       "Make payment",
+//       "Service activated immediately"
+//     ]
+//   },
+//   {
+//     title: "Electricity Bills",
+//     icon: <FaBolt className="text-4xl" />,
+//     description: "Pay electricity bills online",
+//     process: [
+//       "Choose electricity provider",
+//       "Enter meter number",
+//       "Specify amount",
+//       "Complete payment",
+//       "Receive payment confirmation"
+//     ]
+//   }
+// ];
 
 const benefits = [
   {

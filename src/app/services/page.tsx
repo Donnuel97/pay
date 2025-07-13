@@ -128,7 +128,7 @@ export default function ServicesPage() {
           </h1>
           <p className="text-xl text-gray-600 mb-8">
             Discover our comprehensive range of digital payment services designed to make your life easier. 
-            From airtime to electricity bills, we've got you covered.
+            From airtime to electricity bills, we&apos;ve got you covered.
           </p>
           <div className="flex justify-center">
             <Link href="/dashboard" className="bg-[#19C37D] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:bg-[#16a06a] transition flex items-center gap-2">

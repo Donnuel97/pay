@@ -10,7 +10,6 @@ interface FormValidationProps {
 }
 
 const FormValidation: React.FC<FormValidationProps> = ({
-  isValid,
   isLoading,
   errorMessage,
   successMessage,

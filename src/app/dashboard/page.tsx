@@ -61,6 +61,7 @@ export default function Dashboard() {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFormSubmit = (formData: any) => {
     const service = getServiceName(activeSidebar);
     const transactionDetails: TransactionData = {
@@ -82,9 +83,7 @@ export default function Dashboard() {
     setActiveStep(2);
   };
 
-  const handlePaymentMethodSelect = (method: string) => {
-    setPaymentMethod(method);
-  };
+
 
   const handlePaymentSubmit = async () => {
     setIsProcessing(true);
@@ -121,7 +120,6 @@ export default function Dashboard() {
 
   // Step 1: Dynamic form based on process
   const renderStep1 = () => {
-    const service = getServiceName(activeSidebar);
     const descriptions = {
       Airtime: "Stay Connected! Top-up your airtime online - MTN, 9mobile, Airtel, Glo",
       Data: "Purchase data bundles for all networks - MTN, 9mobile, Airtel, Glo",

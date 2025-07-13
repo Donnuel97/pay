@@ -83,7 +83,7 @@ const DataForm: React.FC<DataFormProps> = ({ onSubmit, onValidationChange }) => 
       }));
       
       onSubmit(e);
-    } catch (error) {
+    } catch {
       setValidation(prev => ({
         ...prev,
         isLoading: false,
