@@ -11,6 +11,7 @@ interface TransactionDetails {
   phoneNumber?: string;
   dataPlan?: string;
   email?: string;
+  transactionId?: string;
 }
 
 interface TransactionConfirmationProps {
@@ -60,86 +61,65 @@ const TransactionConfirmation: React.FC<TransactionConfirmationProps> = ({
   };
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-payclick-dark mb-2">Confirm Transaction</h2>
-        <p className="text-gray-600">Please review your transaction details before proceeding</p>
-      </div>
-
-      <div className="bg-gray-50 rounded-lg p-6 space-y-4">
-        <div className="flex items-center space-x-3">
-          <span className="text-2xl">{getServiceIcon(details.service)}</span>
-          <div>
-            <h3 className="font-semibold text-lg">{details.service}</h3>
-            <p className="text-gray-600">{details.provider}</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-3">
-            <div className="flex justify-between">
-              <span className="text-gray-600">Amount:</span>
-              <span className="font-semibold text-lg">₦{details.amount}</span>
+    <div className="space-y-8">
+      <div className="bg-white rounded-2xl shadow-lg p-8 border border-[#e0f2fe] max-w-xl mx-auto">
+        <h2 className="text-2xl font-bold text-payclick-dark mb-2">Please Confirm Your Transaction Details are as follows:</h2>
+        <div className="text-xs text-gray-500 font-semibold mb-2">TRANSACTION DETAILS:</div>
+        <div className="rounded-xl border-2 border-green-400 bg-white/80 p-6 mb-6">
+          <div className="grid grid-cols-1 gap-2 text-base">
+            <div className="flex justify-between items-center py-1">
+              <span className="font-medium text-gray-700">Network Provider</span>
+              <span className="text-gray-900 font-semibold">{details.provider}</span>
             </div>
-            
-            <div className="flex justify-between">
-              <span className="text-gray-600">{getRecipientLabel(details.service)}:</span>
-              <span className="font-medium">{getRecipientValue(details)}</span>
-            </div>
-
-            {details.dataPlan && (
-              <div className="flex justify-between">
-                <span className="text-gray-600">Data Plan:</span>
-                <span className="font-medium">{details.dataPlan}</span>
+            {getRecipientValue(details) && (
+              <div className="flex justify-between items-center py-1">
+                <span className="font-medium text-gray-700">{getRecipientLabel(details.service)}</span>
+                <span className="text-gray-900 font-semibold">{getRecipientValue(details)}</span>
               </div>
             )}
-
+            <div className="flex justify-between items-center py-1">
+              <span className="font-medium text-gray-700">Amount</span>
+              <span className="text-gray-900 font-semibold">₦{details.amount}</span>
+            </div>
+            <div className="flex justify-between items-center py-1">
+              <span className="font-medium text-gray-700">Transaction ID</span>
+              <span className="text-gray-900 font-semibold">{details.transactionId || 'Auto-generated'}</span>
+            </div>
             {details.email && (
-              <div className="flex justify-between">
-                <span className="text-gray-600">Email:</span>
-                <span className="font-medium">{details.email}</span>
+              <div className="flex justify-between items-center py-1">
+                <span className="font-medium text-gray-700">Email</span>
+                <span className="text-gray-900 font-semibold">{details.email}</span>
               </div>
             )}
           </div>
         </div>
-
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-          <div className="flex items-start space-x-2">
-            <FaInfoCircle className="text-blue-500 mt-0.5 flex-shrink-0" />
-            <div className="text-sm text-blue-800">
-              <p className="font-medium">Transaction Summary</p>
-              <p>You will be charged ₦{details.amount} for this {details.service.toLowerCase()} purchase.</p>
-            </div>
-          </div>
+        <div className="flex gap-3 mt-6">
+          <button
+            onClick={onEdit}
+            disabled={isLoading}
+            className="flex-1 bg-gray-200 text-gray-700 font-semibold py-3 rounded-lg hover:bg-gray-300 transition disabled:opacity-50"
+          >
+            <FaTimes className="inline mr-2" />
+            Edit Details
+          </button>
+          <button
+            onClick={onConfirm}
+            disabled={isLoading}
+            className="flex-1 bg-[#19C37D] text-white font-semibold py-3 rounded-lg hover:bg-[#16a06a] transition disabled:opacity-50 flex items-center justify-center"
+          >
+            {isLoading ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Processing...
+              </>
+            ) : (
+              <>
+                <FaCheckCircle className="mr-2" />
+                Confirm & Proceed
+              </>
+            )}
+          </button>
         </div>
-      </div>
-
-      <div className="flex gap-3">
-        <button
-          onClick={onEdit}
-          disabled={isLoading}
-          className="flex-1 bg-gray-200 text-gray-700 font-semibold py-3 rounded-lg hover:bg-gray-300 transition disabled:opacity-50"
-        >
-          <FaTimes className="inline mr-2" />
-          Edit Details
-        </button>
-        <button
-          onClick={onConfirm}
-          disabled={isLoading}
-          className="flex-1 bg-[#19C37D] text-white font-semibold py-3 rounded-lg hover:bg-[#16a06a] transition disabled:opacity-50 flex items-center justify-center"
-        >
-          {isLoading ? (
-            <>
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-              Processing...
-            </>
-          ) : (
-            <>
-              <FaCheckCircle className="mr-2" />
-              Confirm & Proceed
-            </>
-          )}
-        </button>
       </div>
     </div>
   );

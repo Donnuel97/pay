@@ -28,11 +28,11 @@ const steps = [
 
 export default function Features() {
   return (
-    <section className="bg-transparent w-full py-20 flex justify-center items-center">
+    <section className="relative w-full py-20 flex justify-center items-center" style={{ background: 'linear-gradient(180deg, #e0f2fe 0%, #ffffff 100%)' }}>
       <div className="container mx-auto">
         <div
           className="w-full rounded-3xl shadow-2xl p-10 grid md:grid-cols-2 gap-8 items-center backdrop-blur-md"
-          style={{ background: 'linear-gradient(120deg, rgba(255,255,255,0.7) 60%, rgba(186,230,253,0.4) 100%)' }}
+          style={{ background: 'rgba(255,255,255,0.75)' }}
         >
           <div className="flex justify-center">
             <motion.div
@@ -68,6 +68,8 @@ export default function Features() {
           </div>
         </div>
       </div>
+      {/* Green abstract shape, bottom right */}
+      <div className="absolute right-0 bottom-0 w-[340px] h-[220px] bg-green-400 rounded-full opacity-40 blur-3xl z-0" style={{transform: 'translate(30%, 30%) rotate(10deg)'}} />
     </section>
   );
 }

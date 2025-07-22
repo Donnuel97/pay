@@ -6,13 +6,13 @@ import { faMobileAlt, faWifi, faTv, faBolt, faEllipsisH } from "@fortawesome/fre
 
 export default function Hero() {
   return (
-    <main className="relative bg-transparent overflow-hidden w-full py-20 flex justify-center items-center px-4">
+    <main className="relative overflow-hidden w-full py-20 flex justify-center items-center px-4" style={{ background: 'linear-gradient(180deg, #e0f2fe 0%, #ffffff 100%)' }}>
       <div className="container mx-auto">
         <div
           className="w-full rounded-3xl shadow-2xl p-10 grid md:grid-cols-2 gap-8 items-center backdrop-blur-md"
           style={{ 
-            background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.9) 0%, rgba(224,242,254,0.6) 50%, rgba(255,255,255,0.8) 100%)',
-            border: '1px solid rgba(224,242,254,0.3)'
+            background: 'rgba(255,255,255,0.75)',
+            // Remove border for a softer look
           }}
         >
           <div className="space-y-6">
@@ -94,8 +94,10 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-      {/* Green abstract shape */}
-      <div className="absolute right-0 top-10 w-96 h-96 bg-green-400 rounded-full opacity-60 blur-3xl z-0" style={{transform: 'translate(30%, -20%)'}} />
+      {/* Green abstract shape, bottom left */}
+      <div className="absolute left-0 bottom-0 w-[420px] h-[320px] bg-green-400 rounded-full opacity-50 blur-3xl z-0" style={{transform: 'translate(-30%, 30%) rotate(-15deg)'}} />
+      {/* Green abstract shape, top right (lighter, for balance) */}
+      <div className="absolute right-0 top-10 w-96 h-96 bg-green-200 rounded-full opacity-40 blur-3xl z-0" style={{transform: 'translate(30%, -20%)'}} />
     </main>
   );
 }

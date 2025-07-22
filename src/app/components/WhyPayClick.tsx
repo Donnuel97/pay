@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 
 export default function WhyPayClick() {
   return (
-    <section className="bg-transparent w-full py-20 flex justify-center items-center">
+    <section className="relative w-full py-20 flex justify-center items-center" style={{ background: 'linear-gradient(180deg, #e0f2fe 0%, #ffffff 100%)' }}>
       <div className="container mx-auto">
         <div
           className="w-full rounded-3xl shadow-2xl p-10 backdrop-blur-md transition-transform duration-200 hover:scale-105"
-          style={{ background: 'linear-gradient(120deg, rgba(255,255,255,0.7) 60%, rgba(186,230,253,0.4) 100%)' }}
+          style={{ background: 'rgba(255,255,255,0.75)' }}
         >
           <motion.h2
             className="text-4xl font-bold text-center mb-12 text-payclick-dark"
@@ -45,6 +45,8 @@ export default function WhyPayClick() {
           </div>
         </div>
       </div>
+      {/* Green abstract shape, bottom left */}
+      <div className="absolute left-0 bottom-0 w-[320px] h-[180px] bg-green-400 rounded-full opacity-40 blur-3xl z-0" style={{transform: 'translate(-30%, 30%) rotate(-10deg)'}} />
     </section>
   );
 }
