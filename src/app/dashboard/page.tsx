@@ -135,7 +135,6 @@ export default function Dashboard() {
               {!transactionData ? (
                 // Show the form for the selected service
                 (() => {
-                  const service = getServiceName(activeSidebar);
                   switch (activeSidebar) {
                     case 0:
                       return <AirtimeForm onSubmit={(e) => { e.preventDefault(); const form = e.target as HTMLFormElement; const formData = new FormData(form); const data = Object.fromEntries(formData); handleFormSubmit(data); }} />;
