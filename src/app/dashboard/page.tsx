@@ -52,9 +52,8 @@ export default function Dashboard() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFormSubmit = (formData: any) => {
-    const service = getServiceName(activeSidebar);
     const transactionDetails: TransactionData = {
-      service,
+      service: getServiceName(activeSidebar),
       provider: formData.networkProvider || formData.provider,
       amount: formData.amount,
       phoneNumber: formData.phoneNumber,
