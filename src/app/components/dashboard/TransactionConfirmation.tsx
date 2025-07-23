@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCheckCircle, FaTimes } from "react-icons/fa";
+import { FaCheckCircle, FaTimes, FaInfoCircle } from "react-icons/fa";
 
 interface TransactionDetails {
   service: string;
@@ -27,6 +27,21 @@ const TransactionConfirmation: React.FC<TransactionConfirmationProps> = ({
   onEdit,
   isLoading = false
 }) => {
+  const getServiceIcon = (service: string) => {
+    switch (service.toLowerCase()) {
+      case 'airtime':
+        return '📱';
+      case 'data':
+        return '📶';
+      case 'cable':
+        return '📺';
+      case 'electricity':
+        return '⚡';
+      default:
+        return '💰';
+    }
+  };
+
   const getRecipientLabel = (service: string) => {
     switch (service.toLowerCase()) {
       case 'airtime':

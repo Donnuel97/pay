@@ -22,13 +22,13 @@ export default function Partners() {
           <div className="carousel-track flex items-center animate-carousel whitespace-nowrap">
             {partners.map((src, idx) => (
               <div key={idx} className="inline-block mx-12">
-                <Image src={src} alt={`Partner ${idx + 1}`} width={180} height={90} />
+                <Image src={src} alt={`Partner ${idx + 1}`} width={280} height={350} />
               </div>
             ))}
             {/* Duplicate for seamless loop */}
             {partners.map((src, idx) => (
               <div key={partners.length + idx} className="inline-block mx-12">
-                <Image src={src} alt={`Partner ${idx + 1}`} width={250} height={250} />
+                <Image src={src} alt={`Partner ${idx + 1}`} width={280} height={350} />
               </div>
             ))}
           </div>

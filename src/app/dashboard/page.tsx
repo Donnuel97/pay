@@ -43,10 +43,9 @@ interface TransactionData {
 }
 
 export default function Dashboard() {
-  const [activeStep, setActiveStep] = useState(0);
   const [activeSidebar, setActiveSidebar] = useState(0);
   const [transactionData, setTransactionData] = useState<TransactionData | null>(null);
-  const [paymentStatus, setPaymentStatus] = useState<'processing' | 'success' | 'failed' | 'pending'>('processing');
+  const [paymentStatus, setPaymentStatus] = useState<'idle' | 'processing' | 'success' | 'failed'>('idle');
   const [transactionId, setTransactionId] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -74,180 +73,29 @@ export default function Dashboard() {
       dataPlan: formData.dataPlan,
       email: formData.email
     };
-    
     setTransactionData(transactionDetails);
-    setActiveStep(1);
+    setPaymentStatus('idle');
+    setTransactionId("");
+    setPaymentMethod("");
   };
 
-  const handleConfirmation = () => {
-    setActiveStep(2);
-  };
-
-
-
-  const handlePaymentSubmit = async () => {
+  const handlePayment = (method: string) => {
+    setPaymentMethod(method);
     setIsProcessing(true);
     setPaymentStatus('processing');
     setTransactionId(`TXN${Date.now()}`);
-    
-    // Simulate payment processing
     setTimeout(() => {
       setPaymentStatus('success');
       setIsProcessing(false);
-      setActiveStep(3);
-    }, 3000);
-  };
-
-  const handleRetryPayment = () => {
-    setPaymentStatus('processing');
-    setIsProcessing(true);
-    
-    setTimeout(() => {
-      setPaymentStatus('success');
-      setIsProcessing(false);
-      setActiveStep(3);
     }, 2000);
   };
 
   const handleNewTransaction = () => {
-    setActiveStep(0);
     setTransactionData(null);
-    setPaymentStatus('processing');
+    setPaymentStatus('idle');
     setTransactionId("");
     setPaymentMethod("");
     setIsProcessing(false);
-  };
-
-  // Step 1: Dynamic form based on process
-  const renderStep1 = () => {
-    const descriptions = {
-      Airtime: "Stay Connected! Top-up your airtime online - MTN, 9mobile, Airtel, Glo",
-      Data: "Purchase data bundles for all networks - MTN, 9mobile, Airtel, Glo",
-      Cable: "Pay for your Cable TV subscription - DSTV, GOTV, Startimes",
-      Electricity: "Pay your electricity bills - PHED, IKEDC, EKEDC, AEDC"
-    };
-
-    switch (activeSidebar) {
-      case 0:
-        return (
-          <>
-            <h2 className="text-2xl font-bold text-payclick-dark mb-2">Buy Airtime</h2>
-            <a href="#" className="text-[#1A56DB] text-sm underline mb-4 inline-block">{descriptions.Airtime}</a>
-            <AirtimeForm 
-              onSubmit={(e) => { 
-                e.preventDefault(); 
-                // Extract form data and call handleFormSubmit
-                const form = e.target as HTMLFormElement;
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData);
-                handleFormSubmit(data);
-              }} 
-            />
-          </>
-        );
-      case 1:
-        return (
-          <>
-            <h2 className="text-2xl font-bold text-payclick-dark mb-2">Buy Data</h2>
-            <a href="#" className="text-[#1A56DB] text-sm underline mb-4 inline-block">{descriptions.Data}</a>
-            <DataForm 
-              onSubmit={(e) => { 
-                e.preventDefault(); 
-                const form = e.target as HTMLFormElement;
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData);
-                handleFormSubmit(data);
-              }} 
-            />
-          </>
-        );
-      case 2:
-        return (
-          <>
-            <h2 className="text-2xl font-bold text-payclick-dark mb-2">Pay Cable TV</h2>
-            <a href="#" className="text-[#1A56DB] text-sm underline mb-4 inline-block">{descriptions.Cable}</a>
-            <CableForm 
-              onSubmit={(e) => { 
-                e.preventDefault(); 
-                const form = e.target as HTMLFormElement;
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData);
-                handleFormSubmit(data);
-              }} 
-            />
-          </>
-        );
-      case 3:
-        return (
-          <>
-            <h2 className="text-2xl font-bold text-payclick-dark mb-2">Pay Electricity Bill</h2>
-            <a href="#" className="text-[#1A56DB] text-sm underline mb-4 inline-block">{descriptions.Electricity}</a>
-            <ElectricityForm 
-              onSubmit={(e) => { 
-                e.preventDefault(); 
-                const form = e.target as HTMLFormElement;
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData);
-                handleFormSubmit(data);
-              }} 
-            />
-          </>
-        );
-      default:
-        return null;
-    }
-  };
-
-  const renderStepContent = () => {
-    switch (activeStep) {
-      case 0:
-        return renderStep1();
-      case 1:
-        return transactionData ? (
-          <TransactionConfirmation
-            details={transactionData}
-            onConfirm={handleConfirmation}
-            onEdit={() => setActiveStep(0)}
-          />
-        ) : null;
-      case 2:
-        return isProcessing ? (
-          <PaymentProcessing
-            status={paymentStatus}
-            paymentMethod={paymentMethod}
-            amount={transactionData?.amount || ""}
-            transactionId={transactionId}
-            onRetry={handleRetryPayment}
-          />
-        ) : (
-          <PaymentMethod 
-            onSubmit={(e) => { 
-              e.preventDefault(); 
-              handlePaymentSubmit();
-            }}
-            onValidationChange={(isValid) => {
-              if (isValid) {
-                handlePaymentSubmit();
-              }
-            }}
-          />
-        );
-      case 3:
-        return transactionData ? (
-          <TransactionStatus
-            currentStep="completed"
-            transactionId={transactionId}
-            service={transactionData.service}
-            amount={transactionData.amount}
-            recipient={transactionData.phoneNumber || transactionData.meterNumber || transactionData.smartCardNumber || ""}
-            onNewTransaction={handleNewTransaction}
-          />
-        ) : (
-          <Receipt />
-        );
-      default:
-        return null;
-    }
   };
 
   return (
@@ -288,18 +136,71 @@ export default function Dashboard() {
               sidebarLinks={sidebarLinks}
               activeSidebar={activeSidebar}
               setActiveSidebar={setActiveSidebar}
-              setActiveStep={setActiveStep}
+              setActiveStep={() => {}}
             />
           </aside>
           {/* Main Content */}
           <main className="flex-1 flex flex-col justify-center items-center py-8 px-4">
             <div className="max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-8 border border-[#e0f2fe]" style={{ minHeight: '420px' }}>
-              {/* Stepper */}
-              <Stepper steps={steps} activeStep={activeStep} />
-              {/* Step Content */}
-              <div>
-                {renderStepContent()}
-              </div>
+              {/* Unified Payment Card */}
+              {!transactionData ? (
+                // Show the form for the selected service
+                (() => {
+                  const service = getServiceName(activeSidebar);
+                  switch (activeSidebar) {
+                    case 0:
+                      return <AirtimeForm onSubmit={(e) => { e.preventDefault(); const form = e.target as HTMLFormElement; const formData = new FormData(form); const data = Object.fromEntries(formData); handleFormSubmit(data); }} />;
+                    case 1:
+                      return <DataForm onSubmit={(e) => { e.preventDefault(); const form = e.target as HTMLFormElement; const formData = new FormData(form); const data = Object.fromEntries(formData); handleFormSubmit(data); }} />;
+                    case 2:
+                      return <CableForm onSubmit={(e) => { e.preventDefault(); const form = e.target as HTMLFormElement; const formData = new FormData(form); const data = Object.fromEntries(formData); handleFormSubmit(data); }} />;
+                    case 3:
+                      return <ElectricityForm onSubmit={(e) => { e.preventDefault(); const form = e.target as HTMLFormElement; const formData = new FormData(form); const data = Object.fromEntries(formData); handleFormSubmit(data); }} />;
+                    default:
+                      return null;
+                  }
+                })()
+              ) : (
+                <>
+                  {/* Confirmation Card */}
+                  <TransactionConfirmation
+                    details={{ ...transactionData, transactionId }}
+                    onConfirm={() => handlePayment(paymentMethod || 'card')}
+                    onEdit={handleNewTransaction}
+                    isLoading={isProcessing}
+                  />
+                  {/* Payment Method Card */}
+                  {paymentStatus === 'idle' && (
+                    <PaymentMethod
+                      onSubmit={() => handlePayment(paymentMethod || 'card')}
+                      onValidationChange={(isValid) => {
+                        if (isValid) handlePayment(paymentMethod || 'card');
+                      }}
+                    />
+                  )}
+                  {/* Success/Failure Card */}
+                  {paymentStatus === 'success' && (
+                    <TransactionStatus
+                      currentStep="completed"
+                      transactionId={transactionId}
+                      service={transactionData.service}
+                      amount={transactionData.amount}
+                      recipient={transactionData.phoneNumber || transactionData.meterNumber || transactionData.smartCardNumber || ""}
+                      onNewTransaction={handleNewTransaction}
+                    />
+                  )}
+                  {paymentStatus === 'failed' && (
+                    <TransactionStatus
+                      currentStep="failed"
+                      transactionId={transactionId}
+                      service={transactionData.service}
+                      amount={transactionData.amount}
+                      recipient={transactionData.phoneNumber || transactionData.meterNumber || transactionData.smartCardNumber || ""}
+                      onNewTransaction={handleNewTransaction}
+                    />
+                  )}
+                </>
+              )}
               <div className="mt-6 text-center text-[#1A56DB] text-sm font-medium">
                 Download the PayClick mobile App to enjoy more in-app features...
               </div>
