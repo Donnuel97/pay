@@ -5,7 +5,6 @@ import Features from "./components/Features";
 import WhyPayClick from "./components/WhyPayClick";
 import Partners from "./components/Partners";
 import Footer from "./components/Footer";
-import { useState } from "react";
 
 export default function Home() {
   // Removed Access Your Transaction History section

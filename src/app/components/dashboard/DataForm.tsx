@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import FormValidation from "./FormValidation";
-import { FaSimCard, FaMobileAlt, FaWifi, FaBolt } from "react-icons/fa";
 
 interface DataFormProps {
   onSubmit: (e: React.FormEvent) => void;

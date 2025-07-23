@@ -4,15 +4,12 @@ import { FaMobileAlt, FaWifi, FaTv, FaBolt, FaUserCircle, FaSearch } from "react
 import Image from "next/image";
 import Link from "next/link";
 import Sidebar from "../components/dashboard/Sidebar";
-import Stepper from "../components/dashboard/Stepper";
 import AirtimeForm from "../components/dashboard/AirtimeForm";
 import DataForm from "../components/dashboard/DataForm";
 import CableForm from "../components/dashboard/CableForm";
 import ElectricityForm from "../components/dashboard/ElectricityForm";
 import PaymentMethod from "../components/dashboard/PaymentMethod";
-import Receipt from "../components/dashboard/Receipt";
 import TransactionConfirmation from "../components/dashboard/TransactionConfirmation";
-import PaymentProcessing from "../components/dashboard/PaymentProcessing";
 import TransactionStatus from "../components/dashboard/TransactionStatus";
 import ErrorBoundary from "../components/dashboard/ErrorBoundary";
 
@@ -21,13 +18,6 @@ const sidebarLinks = [
   { icon: <FaWifi />, label: "Data" },
   { icon: <FaTv />, label: "Cable" },
   { icon: <FaBolt />, label: "Electricity" },
-];
-
-const steps = [
-  "Enter Information",
-  "Confirm Details",
-  "Make Payment",
-  "View Receipt",
 ];
 
 interface TransactionData {

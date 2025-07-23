@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaCreditCard, FaUniversity, FaMobile, FaLock, FaShieldAlt } from "react-icons/fa";
+import { FaCreditCard, FaUniversity, FaMobile, FaShieldAlt } from "react-icons/fa";
 
 interface PaymentMethodProps {
   onSubmit: (e: React.FormEvent) => void;
@@ -10,30 +10,6 @@ const PaymentMethod: React.FC<PaymentMethodProps> = ({ onSubmit, onValidationCha
   const [selectedMethod, setSelectedMethod] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-  const paymentMethods = [
-    {
-      id: "card",
-      name: "Credit/Debit Card",
-      icon: <FaCreditCard className="text-2xl" />,
-      description: "Pay securely with your card",
-      features: ["Instant processing", "Secure payment", "All cards accepted"]
-    },
-    {
-      id: "transfer",
-      name: "Bank Transfer",
-      icon: <FaUniversity className="text-2xl" />,
-      description: "Transfer from your bank account",
-      features: ["No additional fees", "Direct bank transfer", "24/7 available"]
-    },
-    {
-      id: "ussd",
-      name: "USSD",
-      icon: <FaMobile className="text-2xl" />,
-      description: "Pay using USSD code",
-      features: ["Quick payment", "No internet needed", "Mobile banking"]
-    }
-  ];
 
   const handleMethodSelect = (methodId: string) => {
     setSelectedMethod(methodId);

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import FormValidation from "./FormValidation";
-import { FaSimCard, FaMobileAlt, FaWifi, FaBolt } from "react-icons/fa";
 
 interface AirtimeFormProps {
   onSubmit: (e: React.FormEvent) => void;
